@@ -86,7 +86,7 @@ set('releases_list', function () {
 set('release_path', function () {
     $releaseExists = test('[ -h {{deploy_path}}/release ]');
     if ($releaseExists) {
-        $link = run("readlink {{deploy_path}}/release");
+        $link = run("realpath {{deploy_path}}/release");
         return substr($link, 0, 1) === '/' ? $link : get('deploy_path') . '/' . $link;
     } else {
         return get('current_path');
@@ -102,7 +102,7 @@ task('deploy:release', function () {
     $previousReleaseExist = test('[ -h release ]');
 
     if ($previousReleaseExist) {
-        run('rm -rf "$(readlink release)"'); // Delete release
+        run('rm -rf "$(realpath release)"'); // Delete release
         run('rm release'); // Delete symlink
     }
 
