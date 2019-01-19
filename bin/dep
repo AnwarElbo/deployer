@@ -58,8 +58,8 @@ $autoload = [
 ];
 
 $includes = [
-    $deployFilePath . '/vendor/deployer/deployer',
-    __DIR__ . '/../../../deployer/deployer',
+    $deployFilePath . '/vendor/xolvio/xolvio-deployer',
+    __DIR__ . '/../../../xolvio/xolvio-deployer',
     __DIR__ . '/../'
 ];
 
@@ -95,12 +95,12 @@ $composerLockFile = $deployFilePath . '/composer.lock';
 if (is_readable($composerLockFile)) {
     $lock = json_decode(file_get_contents($composerLockFile), true);
     foreach ($lock['packages'] as $package) {
-        if ($package['name'] === 'deployer/deployer') {
+        if ($package['name'] === 'xolvio/xolvio-deployer') {
             $version = $package['version'];
         }
     }
     foreach ($lock['packages-dev'] as $package) {
-        if ($package['name'] === 'deployer/deployer') {
+        if ($package['name'] === 'xolvio/xolvio-deployer') {
             $version = $package['version'];
         }
     }
